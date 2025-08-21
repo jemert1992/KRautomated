@@ -13,7 +13,7 @@ WORKDIR /app/src/static/public-adjuster-platform
 RUN npm install --legacy-peer-deps
 RUN npm run build
 # Move the built frontend to the Flask static directory
-RUN rm -rf ../assets && mv dist/* ../
+RUN rm -rf ../assets && mv dist/assets ../ && mv dist/* ../
 WORKDIR /app
 EXPOSE 5000
 CMD ["python", "src/main.py"]
