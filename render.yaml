@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: public-adjuster-pro
+    env: python
+    buildCommand: "pip install -r requirements.txt && npm install --prefix src/static/public-adjuster-platform && npm run build --prefix src/static/public-adjuster-platform && mv src/static/public-adjuster-platform/dist/* src/static/"
+    startCommand: "python src/main.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /api/alerts
+    autoDeploy: true
+
