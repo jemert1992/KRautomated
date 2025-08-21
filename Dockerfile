@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Build the React frontend
 WORKDIR /app/src/static/public-adjuster-platform
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 # Move the built frontend to the Flask static directory
 RUN mv dist/* ../
