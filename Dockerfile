@@ -3,7 +3,8 @@ FROM python:3.11-slim-buster
 WORKDIR /app
 
 # Install Node.js for building the React frontend
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update --fix-missing && apt-get install -y curl && \
+    apt-get clean && apt-get autoclean
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
@@ -25,4 +26,3 @@ WORKDIR /app
 EXPOSE 5000
 
 CMD ["python", "src/main.py"]
-
